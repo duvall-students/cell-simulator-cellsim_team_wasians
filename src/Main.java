@@ -1,6 +1,10 @@
+import view.GUIController;
+
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.println("Hello World!");
+		//Hunter - will prob change this but im adding it to test gui
+		GUIController guiLauncher = new GUIController();
+		guiLauncher.launchGUI();
 	}
 }
