@@ -1,16 +1,21 @@
 package model.cellObject;
+import model.Grid;
 
 public class Shark extends SeaCreature{
 	protected int starvingTime;
+	protected int starvingTimeElapsed;
 	
-	public Shark() {
+	public Shark(Grid grid, int row, int col) {
+		super(grid, row, col);
 		breedingTime = 20;
 		starvingTime = 5;
+		starvingTimeElapsed = 0;
 	}
 
-	@Override
-	void step() {
-		// TODO Auto-generated method stub
-		
+	
+	private boolean isStarved() {
+		return starvingTimeElapsed >= starvingTime;
 	}
+	
+	
 }
