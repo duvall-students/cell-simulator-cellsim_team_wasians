@@ -1,18 +1,14 @@
 package model.cellObject;
 
+import model.Grid;
+
 public class Fish extends SeaCreature{
 	
-	public Fish() {
+	public Fish(Grid grid, int row, int col) {
+		super(grid, row, col);
 		breedingTime = 1;
-	}
-	
-	public boolean isDyanmic() {
-		return true;
-	}
-
-	@Override
-	void step() {
-		// TODO Auto-generated method stub
 		
 	}
+	
+	
 }

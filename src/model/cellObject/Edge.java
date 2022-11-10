@@ -1,12 +1,16 @@
 package model.cellObject;
 
+import model.Grid;
+
 public class Edge extends CellObject{
 	
-	public Edge() {
-		
+	public Edge(Grid grid, int row, int col) {
+		super(grid, row, col);
+	}
+
+	
+	public void step() {
+		getNeighbors();
 	}
 	
-	public boolean isDyanmic() {
-		return false;
-	}
 }
