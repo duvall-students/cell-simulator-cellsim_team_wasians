@@ -80,7 +80,6 @@ public abstract class Grid {
 	}
 	
 	
-	//this needs improvements
 	public HashMap<Integer, CellObject> getNeighbors(int row, int col) {
 		HashMap<Integer, CellObject> neighbors = new HashMap<Integer, CellObject>();
 		
