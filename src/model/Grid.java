@@ -2,6 +2,7 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+import javafx.scene.effect.Light.Point;
 import model.cellObject.*;
 
 public abstract class Grid {
@@ -39,8 +40,7 @@ public abstract class Grid {
 	}			
 	
 	/*
-	 * Turn the random number into one of the spinner words 
-	 * based on the given probabilities.
+	 * returns a random CellObject. 
 	 */
 	public CellObject numToObject(double spinNumber){	
 		int index = 0;
@@ -64,83 +64,49 @@ public abstract class Grid {
 	
 	public void updateGrid() {
 		for (int row = 0; row <= grid.length; row++) {
-			for(int column = 0; column <= grid[0].length; column++) {
-				CellObject cellObject = grid[row][column];
+			for(int col = 0; col <= grid[0].length; col++) {
+				CellObject cellObject = grid[row][col];
 				
 				if(cellObject instanceof SeaCreature) {
-					
-					if(willMove(row, column)) {
-						//die
-						tempGrid[row][column] = new Water();
-						
-						//moveLeft
-						tempGrid[row][column-1] = cellObject;
-						
-						//moveUp
-						tempGrid[row-1][column] = cellObject;
-						
-						//moveRight
-						tempGrid[row][column+1] = cellObject;
-						
-						//moveDown
-						tempGrid[row+1][column] = cellObject;
-					}
-					else {
-						//stay 
-						tempGrid[row][column] = cellObject;
-					}
+					tempGrid = updateCell(row, col, cellObject);
 				}
 			}
 		}
 	}
 	
-	protected boolean willMove(int row, int col) {
-		return !(grid[row][col] instanceof Shark && containsFish(getNeighbors(row, col)));
+	public CellObject[][] updateCell(int curRow, int curCol, CellObject currentCell){
+		HashMap<Integer, CellObject> neighbors  = currentCell.getNeighbors(curRow, curCol);
+		return currentCell.update(curRow, curCol, tempGrid, neighbors);
 	}
 	
 	
-	
-	//this needs improvement
-	public CellObject[] getNeighbors(int row, int col) {
-		CellObject[] neighbors = new CellObject[4];
+	//this needs improvements
+	public HashMap<Integer, CellObject> getNeighbors(int row, int col) {
+		HashMap<Integer, CellObject> neighbors = new HashMap<Integer, CellObject>();
+		
 		//Left neighbor
 		if(col>0) {
-			neighbors[0] = grid[row-1][col];
+			neighbors.put(LEFT, grid[row-1][col]);
 		}
 
-			neighbors[0] = null;
 		//Top neighbor
 		if(row>0) {
-			neighbors[1] = grid[row][col-1];
+			neighbors.put(TOP, grid[row][col-1]);
 		}
-		else {
-			neighbors[1] = null;
-		}
+
 		//right neighbor
 		if(col<grid[0].length-1) {
-			neighbors[2] = grid[row+1][col];
+			neighbors.put(RIGHT, grid[row+1][col]);
 		}
-		else {
-			neighbors[2] = null;
-		}
+		
 		//btm neighbor
 		if(row<grid.length-1) {
-			neighbors[3] = grid[row+1][col];
-		}
-		else {
-			neighbors[3] = null;
+			neighbors.put(BTM, grid[row+1][col]);
 		}
 		return neighbors;
 	}
 	
-	private boolean containsFish(CellObject[] neighbors) {
-		for (CellObject neighbor: neighbors) {
-			if (neighbor instanceof Fish) {
-				return true;
-			}
-		}
-		return false;
-	}
+	
 	
 
 	
