@@ -23,6 +23,5 @@ public class SeaCreature extends CellObject{
 	public void breed() {
 		
 	}
-	
 }
 
