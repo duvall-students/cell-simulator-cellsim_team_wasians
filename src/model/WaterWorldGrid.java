@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import model.cellObject.*;
 
 
@@ -16,10 +19,10 @@ public class WaterWorldGrid extends Grid {
 	
 	public void assignCell(int row, int column) {
 		if (isEdge(row, column)) {
-			grid[row][column]  = new Edge();
+			grid[row][column]  = new Edge(this);
 		}
 		else{
-			grid[row][column] = spin();
+			grid[row][column] = getRandomCell();
 		}
 	}
 
@@ -27,10 +30,5 @@ public class WaterWorldGrid extends Grid {
 	private boolean isEdge(int row, int column) {
 		return row == 0 || column == 0 || row == grid.length-1 || column == grid[0].length-1;
 	}
-	
-	
-	
-	
-	
 	
 }

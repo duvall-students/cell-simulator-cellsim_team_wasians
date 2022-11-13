@@ -1,4 +1,5 @@
 package model.cellObject;
+
 import model.Grid;
 public class Edge extends CellObject{
 	
@@ -61,10 +62,12 @@ public class Edge extends CellObject{
 	       */
 	    	   return 1;
 	       
-	       
+	      
+	}
+
+	
+	public void step() {
+		getNeighbors();
 	}
 	
-	public boolean isDyanmic() {
-		return false;
-	}
 }
