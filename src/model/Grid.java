@@ -20,6 +20,7 @@ public abstract class Grid {
 	
 	public Grid(int rows, int columns) {
 		grid = new CellObject[rows][columns];
+		tempGrid = new CellObject[rows][columns];
 		spinRandom = new Random();
 	}
 	
@@ -79,6 +80,11 @@ public abstract class Grid {
 		return currentCell.update(curRow, curCol, tempGrid, neighbors);
 	}
 	
+	public void materializeTempGrid() {
+		grid = tempGrid;
+		tempGrid = new CellObject[grid.length][grid[0].length];
+	}
+	
 	
 	public HashMap<Integer, CellObject> getNeighbors(int row, int col) {
 		HashMap<Integer, CellObject> neighbors = new HashMap<Integer, CellObject>();
@@ -104,14 +110,5 @@ public abstract class Grid {
 		}
 		return neighbors;
 	}
-	
-	
-	
-
-	
-	
-	
-	
-	
 
 }
