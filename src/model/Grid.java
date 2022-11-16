@@ -61,6 +61,8 @@ public abstract class Grid {
 		return result;
 	}
 	
+	// abstract method in the cellObject
+	// implement further methods in the child classes
 	
 	public void updateGrid() {
 		for (int row = 0; row <= grid.length; row++) {
@@ -73,10 +75,12 @@ public abstract class Grid {
 			}
 		}
 	}
-	
+	// return a partially updated temporary grid
 	public CellObject[][] updateCell(int curRow, int curCol, CellObject currentCell){
+		// error here because getNeighbors() refers to a nonexistent method
 		HashMap<Integer, CellObject> neighbors  = currentCell.getNeighbors(curRow, curCol);
 		return currentCell.update(curRow, curCol, tempGrid, neighbors);
+		// returns changed cell and its neighbors, use polymorphism by calling extended update methods and changing nieghbors
 	}
 	
 	
