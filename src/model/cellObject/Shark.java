@@ -1,4 +1,6 @@
 package model.cellObject;
+import java.util.HashMap;
+
 import model.Grid;
 
 public class Shark extends SeaCreature{
@@ -17,5 +19,15 @@ public class Shark extends SeaCreature{
 		return starvingTimeElapsed >= starvingTime;
 	}
 	
+	public CellObject[][] sharkUpdate(int curRow, int curCol, CellObject[][] tempGrid, HashMap<Integer, CellObject> neighbors2) {
+		//specific update method
+		// if neighbors == fish
+				// move to and delete fish from space
+				
+		//else neighbors == water, move there
+		
+		return tempGrid;
+	}
 	
+
 }

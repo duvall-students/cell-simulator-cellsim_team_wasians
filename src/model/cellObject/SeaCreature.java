@@ -1,5 +1,7 @@
 package model.cellObject;
 
+import java.util.HashMap;
+
 import model.Grid;
 
 public class SeaCreature extends CellObject{
@@ -22,6 +24,21 @@ public class SeaCreature extends CellObject{
 	
 	public void breed() {
 		
+	}
+	
+	public CellObject[][] creatureUpdate(int curRow, int curCol, CellObject[][] tempGrid, HashMap<Integer, CellObject> neighbors2) {
+		// if shark
+		if (tempGrid[curRow][curCol].getClass().isInstance(Shark)) {
+			
+		}
+		// if fish
+		if (tempGrid[curRow][curCol].getClass().isInstance(Fish)) {
+			
+		}
+		// if another creature can go below here
+		
+		//return the updated grid
+		return tempGrid;
 	}
 }
 
