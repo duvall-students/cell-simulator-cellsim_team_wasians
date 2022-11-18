@@ -19,7 +19,7 @@ public class WaterWorldGrid extends Grid {
 	
 	public void assignCell(int row, int column) {
 		if (isEdge(row, column)) {
-			grid[row][column]  = new Edge(this);
+			grid[row][column]  = new Edge();
 		}
 		else{
 			grid[row][column] = getRandomCell();
