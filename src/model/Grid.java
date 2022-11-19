@@ -33,11 +33,15 @@ public abstract class Grid {
 	}
 	
 	public void populateGrid() {
-		for (int row = 0; row <= grid.length; row++) {
-			for(int column = 0; column <= grid[0].length; column++) {
+		for (int row = 0; row < grid.length; row++) {
+			for(int column = 0; column < grid[0].length; column++) {
 				assignCell(row, column);
 			}
 		}
+	}
+	
+	public CellObject getCell(int row, int col) {
+		return grid[row][col];
 	}
 	
 	abstract void assignCell(int row, int column);
@@ -70,21 +74,24 @@ public abstract class Grid {
 		return result;
 	}
 	
-	// abstract method in the cellObject
-	// implement further methods in the child classes
-	
 	public void updateGrid() {
 		for (int row = 0; row <= grid.length; row++) {
 			for(int col = 0; col <= grid[0].length; col++) {
 				CellObject cellObject = grid[row][col];
 				
-				if(cellObject instanceof SeaCreature) {
+				if(!isEdge(row, col)) {
 					tempGrid = updateCell(row, col, cellObject);
 				}
 			}
 		}
 		materializeTempGrid();
 	}
+	
+	protected boolean isEdge(int row, int column) {
+		return row == 0 || column == 0 || row == grid.length-1 || column == grid[0].length-1;
+	}
+	
+	
 	// return a partially updated temporary grid
 	public CellObject[][] updateCell(int curRow, int curCol, CellObject currentCell){
 		HashMap<Integer, CellObject> neighbors  = getNeighbors(curRow, curCol);

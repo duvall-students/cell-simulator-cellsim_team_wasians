@@ -25,10 +25,4 @@ public class WaterWorldGrid extends Grid {
 			grid[row][column] = getRandomCell();
 		}
 	}
-
-	
-	private boolean isEdge(int row, int column) {
-		return row == 0 || column == 0 || row == grid.length-1 || column == grid[0].length-1;
-	}
-	
 }
