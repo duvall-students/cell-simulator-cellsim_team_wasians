@@ -7,7 +7,7 @@ public class Shark extends SeaCreature{
 	protected int starvingTime;
 	protected int starvingTimeElapsed;
 	
-	public Shark(CellObject[][] grid, int row, int col) {
+	public Shark(Grid grid, int row, int col) {
 		super(grid, row, col);
 		breedingTime = 20;
 		starvingTime = 5;
