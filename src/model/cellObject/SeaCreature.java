@@ -6,8 +6,8 @@ import model.Grid;
 
 public class SeaCreature extends CellObject{
 	
-	public SeaCreature(Grid grid, int row, int col) {
-		super(grid, row, col);
+	public SeaCreature() {
+		super();
 
 	}
 
