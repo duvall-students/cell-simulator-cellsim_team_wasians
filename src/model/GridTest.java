@@ -52,17 +52,7 @@ class GridTest {
 		assertTrue(neighbors.get(grid.LEFT).equals(grid.getCell(1, 0)));
 	}
 	
-	@Test
-	void testNeighborMethod2() {
-		Grid grid = new WaterWorldGrid(5,5);
-		grid.populateGrid();
-		
-		CellObject center = grid.getCell(0, 2);
-		
-		HashMap<Integer, CellObject> neighbors = grid.getNeighbors(2,2);
-		neighbors.get(grid.LEFT);
-		assertTrue(neighbors.get(grid.LEFT).equals(null));
-	}
+
 
 
 }
