@@ -106,9 +106,9 @@ public abstract class Grid {
 	//This is only called when the Cell is NOT an edge. 
 	public HashMap<Integer, CellObject> getNeighbors(int row, int col) {
 		HashMap<Integer, CellObject> neighbors = new HashMap<Integer, CellObject>();
-		neighbors.put(LEFT, grid[row-1][col]);
-		neighbors.put(TOP, grid[row][col-1]);
-		neighbors.put(RIGHT, grid[row+1][col]);
+		neighbors.put(LEFT, grid[row][col-1]);
+		neighbors.put(TOP, grid[row-1][col]);
+		neighbors.put(RIGHT, grid[row][col+1]);
 		neighbors.put(BTM, grid[row+1][col]);
 		return neighbors;
 	}
