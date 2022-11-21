@@ -4,6 +4,14 @@ import java.util.HashMap;
 import java.util.Random;
 import javafx.scene.effect.Light.Point;
 import model.cellObject.*;
+/**
+ * 
+ * 
+ * @author chrislee
+ * As of Nov 18, Other parts of the project is incomplete. 
+ * Therefore, I have a J Unit Test to make sure my classes and methods are working correctly-- but the program itself may not be runnable. 
+ */
+
 
 public abstract class Grid {
 	public static final int LEFT = 0;
@@ -20,15 +28,20 @@ public abstract class Grid {
 	
 	public Grid(int rows, int columns) {
 		grid = new CellObject[rows][columns];
+		tempGrid = new CellObject[rows][columns];
 		spinRandom = new Random();
 	}
 	
 	public void populateGrid() {
-		for (int row = 0; row <= grid.length; row++) {
-			for(int column = 0; column <= grid[0].length; column++) {
+		for (int row = 0; row < grid.length; row++) {
+			for(int column = 0; column < grid[0].length; column++) {
 				assignCell(row, column);
 			}
 		}
+	}
+	
+	public CellObject getCell(int row, int col) {
+		return grid[row][col];
 	}
 	
 	abstract void assignCell(int row, int column);
@@ -61,61 +74,44 @@ public abstract class Grid {
 		return result;
 	}
 	
-	// abstract method in the cellObject
-	// implement further methods in the child classes
-	
 	public void updateGrid() {
 		for (int row = 0; row <= grid.length; row++) {
 			for(int col = 0; col <= grid[0].length; col++) {
 				CellObject cellObject = grid[row][col];
 				
-				if(cellObject instanceof SeaCreature) {
+				if(!isEdge(row, col)) {
 					tempGrid = updateCell(row, col, cellObject);
 				}
 			}
 		}
+		materializeTempGrid();
 	}
+	
+	protected boolean isEdge(int row, int column) {
+		return row == 0 || column == 0 || row == grid.length-1 || column == grid[0].length-1;
+	}
+	
+	
 	// return a partially updated temporary grid
 	public CellObject[][] updateCell(int curRow, int curCol, CellObject currentCell){
-		// error here because getNeighbors() refers to a nonexistent method
-		HashMap<Integer, CellObject> neighbors  = currentCell.getNeighbors(curRow, curCol);
+		HashMap<Integer, CellObject> neighbors  = getNeighbors(curRow, curCol);
 		return currentCell.update(curRow, curCol, tempGrid, neighbors);
-		// returns changed cell and its neighbors, use polymorphism by calling extended update methods and changing nieghbors
 	}
 	
+	public void materializeTempGrid() {
+		grid = tempGrid;
+		tempGrid = new CellObject[grid.length][grid[0].length];
+	}
 	
-	//this needs improvements
+	//This is only called when the Cell is NOT an edge. 
 	public HashMap<Integer, CellObject> getNeighbors(int row, int col) {
 		HashMap<Integer, CellObject> neighbors = new HashMap<Integer, CellObject>();
-		
-		//Left neighbor
-		if(col>0) {
-			neighbors.put(LEFT, grid[row-1][col]);
-		}
-
-		//Top neighbor
-		if(row>0) {
-			neighbors.put(TOP, grid[row][col-1]);
-		}
-
-		//right neighbor
-		if(col<grid[0].length-1) {
-			neighbors.put(RIGHT, grid[row+1][col]);
-		}
-		
-		//btm neighbor
-		if(row<grid.length-1) {
-			neighbors.put(BTM, grid[row+1][col]);
-		}
+		neighbors.put(LEFT, grid[row][col-1]);
+		neighbors.put(TOP, grid[row-1][col]);
+		neighbors.put(RIGHT, grid[row][col+1]);
+		neighbors.put(BTM, grid[row+1][col]);
 		return neighbors;
 	}
-	
-	
-	
-
-	
-	
-	
 	
 	
 
