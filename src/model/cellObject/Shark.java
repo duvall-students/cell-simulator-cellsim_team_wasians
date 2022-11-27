@@ -27,9 +27,14 @@ public CellObject[][] sharkUpdate(int curRow, int curCol, CellObject[][] tempGri
 		for (Entry<Integer, CellObject> entry : neighbors2.entrySet()) {
 			Integer key = entry.getKey();
 		    Object value = entry.getValue();
-		    if (value.equals(instanceof Fish)) {
-		    	value = Shark;
-		    	tempGrid[curRow][curCol].equals(Water);
+		    if (value instanceof Fish) {
+		    	ArrayList<Integer> neighborLocation = new ArrayList<Integer>();
+		    	neighborLocation = Grid.neighborCoordinate(curRow,curCol,key);
+		    	int one = neighborLocation.get(0);
+		    	int two = neighborLocation.get(1);
+		    	Shark shark = new Shark(tempGrid, one, two);
+		    	Water water = new Water();
+		    	tempGrid[curRow][curCol] = water;
 		    	break;
 		    }
 		}
@@ -37,9 +42,14 @@ public CellObject[][] sharkUpdate(int curRow, int curCol, CellObject[][] tempGri
 		for (Entry<Integer, CellObject> entry : neighbors2.entrySet()) {
 			Integer key = entry.getKey();
 		    Object value = entry.getValue();
-		    if (value.equals(instanceof Water)) {
-		    	value = Shark;
-		    	tempGrid[curRow][curCol].equals(Water);
+		    if (value instanceof Water) {
+		    	ArrayList<Integer> neighborLocation = new ArrayList<Integer>();
+		    	neighborLocation = Grid.neighborCoordinate(curRow,curCol,key);
+		    	int one = neighborLocation.get(0);
+		    	int two = neighborLocation.get(1);
+		    	Shark shark = new Shark(tempGrid, one, two);
+		    	Water water = new Water();
+		    	tempGrid[curRow][curCol] = water;
 		    	break;
 		    }
 		    
