@@ -1,6 +1,7 @@
 package model.cellObject;
 
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 import model.Grid;
 
@@ -23,8 +24,9 @@ public CellObject[][] fishUpdate(int curRow, int curCol, CellObject[][] tempGrid
 		for (Entry<Integer, CellObject> entry : neighbors2.entrySet()) {
 		    Integer key = entry.getKey(); 
 		    Object value = entry.getValue();
-		    if (value.equals(instanceof Water)) {
-		    	value = Fish;
+		    if (value instanceof Water) {
+		    	Fish fish = new Fish();
+		    	value = fish;
 		    	break;
 		    }
 		}

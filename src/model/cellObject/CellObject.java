@@ -53,7 +53,7 @@ public class CellObject {
 	public CellObject[][] update(int curRow, int curCol, CellObject[][] tempGrid, HashMap<Integer, CellObject> neighbors2) {
 		// updates for specific possible cell objects. 
 		if (tempGrid[curRow][curCol] instanceof SeaCreature) {
-			SeaCreature seaCreature = new SeaCreature(null, 0, 0);
+			SeaCreature seaCreature = new SeaCreature();
 			seaCreature.creatureUpdate(curRow, curCol, tempGrid, neighbors2);
 			// create a new object to get rid of the static reference
 			return tempGrid;
