@@ -4,6 +4,11 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 
 import model.Grid;
+/**
+ * 
+ * @author Blake Byerly
+ * 
+ */
 
 public class Shark extends SeaCreature{
 	protected int starvingTime;
@@ -61,6 +66,5 @@ public CellObject[][] sharkUpdate(int curRow, int curCol, CellObject[][] tempGri
 		
 		return tempGrid;
 	}
-	
 
 }

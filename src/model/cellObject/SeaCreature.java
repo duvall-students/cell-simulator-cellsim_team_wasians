@@ -3,6 +3,11 @@ package model.cellObject;
 import java.util.HashMap;
 
 import model.Grid;
+/**
+ * 
+ * @author Blake Byerly
+ * 
+ */
 
 public class SeaCreature extends CellObject{
 	
@@ -43,4 +48,3 @@ public class SeaCreature extends CellObject{
 		return tempGrid;
 	}
 }
-
