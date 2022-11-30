@@ -190,7 +190,7 @@ public class WaterWorldCellController extends CellController {
 		cellObjectColorIndex.put(SHARK, 3);
 	}
 	
-	// generate the grid
+	// generate the overall grid
 	protected void generateWaterWorldGrid() {
 		grid.populateGrid();
 	}

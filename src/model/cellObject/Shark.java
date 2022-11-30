@@ -66,6 +66,5 @@ public CellObject[][] sharkUpdate(int curRow, int curCol, CellObject[][] tempGri
 		
 		return tempGrid;
 	}
-	
 
 }

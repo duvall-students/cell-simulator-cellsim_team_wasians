@@ -27,7 +27,7 @@ import controller.*;
 
 public class GUIController extends Application{
 
-	//Stuff for the GUI
+	// Stuff for the GUI
 	private final int MILLISECOND_DELAY = 15;
 	private final int EXTRA_VERTICAL = 230;
 	private final int EXTRA_HORIZONTAL = 200;
@@ -179,14 +179,14 @@ public class GUIController extends Application{
 		return inputUnit;
 	}
 	
-	//if not paused, run a step
+	// if not paused, run a step
 	private void step(double elapsedTime) {
 		if(!paused) {
 			this.doOneStep(elapsedTime);
 		}
 	}
 	
-	//everything that should be done in one step or "generation"
+	// everything that should be done in one step or "generation"
 	private void doOneStep(double elapsedTime) {
 //		System.out.println("Step");
 	}

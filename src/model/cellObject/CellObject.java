@@ -1,6 +1,5 @@
 package model.cellObject;
 
-
 import java.util.HashMap;
 
 import javafx.scene.effect.Light.Point;

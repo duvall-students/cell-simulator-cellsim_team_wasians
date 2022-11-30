@@ -48,4 +48,3 @@ public class SeaCreature extends CellObject{
 		return tempGrid;
 	}
 }
-

@@ -18,7 +18,6 @@ public class Fish extends SeaCreature{
 		
 	}
 	
-
 	
 public CellObject[][] fishUpdate(int curRow, int curCol, CellObject[][] tempGrid, HashMap<Integer, CellObject> neighbors2) {
 		// specific update method

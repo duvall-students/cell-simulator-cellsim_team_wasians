@@ -11,6 +11,7 @@ import model.Grid;
  * 
  * CellController.java
  * Implement the logic and interactions between the GUI and model of the cell simulator.
+ * (May modify the class if there are extensions of the program)
  * 
  */
 

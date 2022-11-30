@@ -9,7 +9,7 @@ public class CellSimulator {
 	public CellSimulator() {
 //		runSimulators();
 		
-		// this is temporary and just for testing the program
+		// this is temporary and only for testing the program
 		GUIController programGUIController = new GUIController();
 		programGUIController.launchGUI();
 	}

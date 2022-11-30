@@ -34,7 +34,6 @@ class GridTest {
 		assertTrue(grid.getCell(4,4) instanceof Edge);
 	}
 	
-	
 	@Test
 	void testInner() {
 		Grid grid = new WaterWorldGrid(5,5,.7,.1);
