@@ -10,20 +10,26 @@ import model.cellObject.CellObject;
 import model.cellObject.Edge;
 import model.cellObject.SeaCreature;
 
+/**
+ * 
+ * @author chrislee
+ * 
+ */
+
 class GridTest {
 	
 
 	//Test if the outer edges of the Grid is correctly assigned as "Edge"
 	@Test
 	void testEdge1() {
-		Grid grid = new WaterWorldGrid(5,5);
+		Grid grid = new WaterWorldGrid(5,5,.7,.1);
 		grid.populateGrid();
 		assertTrue(grid.getCell(0,0) instanceof Edge);
 	}
 	
 	@Test
 	void testEdge2() {
-		Grid grid = new WaterWorldGrid(5,5);
+		Grid grid = new WaterWorldGrid(5,5,.7,.1);
 		grid.populateGrid();
 		assertTrue(grid.getCell(4,4) instanceof Edge);
 	}
@@ -31,7 +37,7 @@ class GridTest {
 	
 	@Test
 	void testInner() {
-		Grid grid = new WaterWorldGrid(5,5);
+		Grid grid = new WaterWorldGrid(5,5,.7,.1);
 		grid.populateGrid();
 		assertFalse(grid.getCell(2,2) instanceof Edge);
 	}
@@ -40,7 +46,7 @@ class GridTest {
 	// get Neighbor method is only called when the Object on which the method is called is not an Edge. 
 	@Test
 	void testNeighborMethod() {
-		Grid grid = new WaterWorldGrid(5,5);
+		Grid grid = new WaterWorldGrid(5,5,.7,.1);
 		grid.populateGrid();
 		
 		CellObject center = grid.getCell(1, 1);

@@ -5,15 +5,21 @@ import java.util.HashMap;
 
 import model.cellObject.*;
 
-
+/**
+ * 
+ * @author chrislee
+ * 
+ */
 
 public class WaterWorldGrid extends Grid {
 	
 	
-	public WaterWorldGrid(int rows, int columns) {
+	public WaterWorldGrid(int rows, int columns, double fishDensity, double sharkDensity) {
 		super(rows, columns);
 		cellTypes = new CellObject[] {new Fish(), new Shark(), new Water()};
-		probabilities = new double[] {.7, .1, .2};
+		// Brandon
+		// pass the value of fish and shark density
+		probabilities = new double[] {fishDensity, sharkDensity, .2};
 	}
 	
 	

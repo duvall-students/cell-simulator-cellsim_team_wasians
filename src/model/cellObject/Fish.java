@@ -4,6 +4,11 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 
 import model.Grid;
+/**
+ * 
+ * @author Blake Byerly
+ * 
+ */
 
 public class Fish extends SeaCreature{
 	

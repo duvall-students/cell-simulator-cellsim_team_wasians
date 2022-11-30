@@ -6,6 +6,11 @@ import java.util.HashMap;
 import javafx.scene.effect.Light.Point;
 import model.Grid;
 
+/**
+ * 
+ * @author Blake Byerly
+ * 
+ */
 
 public class CellObject {
 	Grid grid;
