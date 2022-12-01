@@ -86,7 +86,32 @@ public abstract class Grid {
 		}
 		materializeTempGrid();
 	}
-	
+	//Blake
+	//returns coordinates of a chosen neighbor CellObject (row, column)
+	public static ArrayList<Integer> neighborCoordinate(int curRow, int curCol, int coordinate) {
+		ArrayList<Integer> arr = new ArrayList<>();
+		// if neighbor is left
+		if (coordinate == LEFT) {
+			arr.add(curRow);
+			arr.add(curCol - 1);
+		}
+		// if neighbor is top
+		else if (coordinate == TOP) {
+			arr.add(curRow - 1);
+			arr.add(curCol);
+		}
+		// if neighbor is right
+		else if (coordinate == RIGHT) {
+			arr.add(curRow);
+			arr.add(curCol + 1);
+		}		
+		// if neighbor is bottom
+		else if (coordinate == BTM) {
+			arr.add(curRow + 1);
+			arr.add(curCol);
+		}		
+		return arr;
+	}
 	protected boolean isEdge(int row, int column) {
 		return row == 0 || column == 0 || row == grid.length-1 || column == grid[0].length-1;
 	}
