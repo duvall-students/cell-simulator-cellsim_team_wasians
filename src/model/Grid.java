@@ -2,7 +2,16 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+import javafx.scene.effect.Light.Point;
 import model.cellObject.*;
+/**
+ * 
+ * 
+ * @author chrislee
+ * As of Nov 18, Other parts of the project is incomplete. 
+ * Therefore, I have a J Unit Test to make sure my classes and methods are working correctly-- but the program itself may not be runnable. 
+ */
+
 
 public abstract class Grid {
 	public static final int LEFT = 0;
@@ -19,15 +28,20 @@ public abstract class Grid {
 	
 	public Grid(int rows, int columns) {
 		grid = new CellObject[rows][columns];
+		tempGrid = new CellObject[rows][columns];
 		spinRandom = new Random();
 	}
 	
 	public void populateGrid() {
-		for (int row = 0; row <= grid.length; row++) {
-			for(int column = 0; column <= grid[0].length; column++) {
+		for (int row = 0; row < grid.length; row++) {
+			for(int column = 0; column < grid[0].length; column++) {
 				assignCell(row, column);
 			}
 		}
+	}
+	
+	public CellObject getCell(int row, int col) {
+		return grid[row][col];
 	}
 	
 	abstract void assignCell(int row, int column);
@@ -39,8 +53,7 @@ public abstract class Grid {
 	}			
 	
 	/*
-	 * Turn the random number into one of the spinner words 
-	 * based on the given probabilities.
+	 * returns a random CellObject. 
 	 */
 	public CellObject numToObject(double spinNumber){	
 		int index = 0;
@@ -61,91 +74,69 @@ public abstract class Grid {
 		return result;
 	}
 	
-	
 	public void updateGrid() {
 		for (int row = 0; row <= grid.length; row++) {
-			for(int column = 0; column <= grid[0].length; column++) {
-				CellObject cellObject = grid[row][column];
+			for(int col = 0; col <= grid[0].length; col++) {
+				CellObject cellObject = grid[row][col];
 				
-				if(cellObject instanceof SeaCreature) {
-					
-					if(willMove(row, column)) {
-						//die
-						tempGrid[row][column] = new Water();
-						
-						//moveLeft
-						tempGrid[row][column-1] = cellObject;
-						
-						//moveUp
-						tempGrid[row-1][column] = cellObject;
-						
-						//moveRight
-						tempGrid[row][column+1] = cellObject;
-						
-						//moveDown
-						tempGrid[row+1][column] = cellObject;
-					}
-					else {
-						//stay 
-						tempGrid[row][column] = cellObject;
-					}
+				if(!isEdge(row, col)) {
+					tempGrid = updateCell(row, col, cellObject);
 				}
 			}
 		}
+		materializeTempGrid();
+	}
+	//Blake
+	//returns coordinates of a chosen neighbor CellObject (row, column)
+	public static ArrayList<Integer> neighborCoordinate(int curRow, int curCol, int coordinate) {
+		ArrayList<Integer> arr = new ArrayList<>();
+		// if neighbor is left
+		if (coordinate == LEFT) {
+			arr.add(curRow);
+			arr.add(curCol - 1);
+		}
+		// if neighbor is top
+		else if (coordinate == TOP) {
+			arr.add(curRow - 1);
+			arr.add(curCol);
+		}
+		// if neighbor is right
+		else if (coordinate == RIGHT) {
+			arr.add(curRow);
+			arr.add(curCol + 1);
+		}		
+		// if neighbor is bottom
+		else if (coordinate == BTM) {
+			arr.add(curRow + 1);
+			arr.add(curCol);
+		}		
+		return arr;
+	}
+	protected boolean isEdge(int row, int column) {
+		return row == 0 || column == 0 || row == grid.length-1 || column == grid[0].length-1;
 	}
 	
-	protected boolean willMove(int row, int col) {
-		return !(grid[row][col] instanceof Shark && containsFish(getNeighbors(row, col)));
+	
+	// return a partially updated temporary grid
+	public CellObject[][] updateCell(int curRow, int curCol, CellObject currentCell){
+		HashMap<Integer, CellObject> neighbors  = getNeighbors(curRow, curCol);
+		return currentCell.update(curRow, curCol, tempGrid, neighbors);
 	}
 	
+	public void materializeTempGrid() {
+		grid = tempGrid;
+		tempGrid = new CellObject[grid.length][grid[0].length];
+	}
 	
-	
-	//this needs improvement
-	public CellObject[] getNeighbors(int row, int col) {
-		CellObject[] neighbors = new CellObject[4];
-		//Left neighbor
-		if(col>0) {
-			neighbors[0] = grid[row-1][col];
-		}
-
-			neighbors[0] = null;
-		//Top neighbor
-		if(row>0) {
-			neighbors[1] = grid[row][col-1];
-		}
-		else {
-			neighbors[1] = null;
-		}
-		//right neighbor
-		if(col<grid[0].length-1) {
-			neighbors[2] = grid[row+1][col];
-		}
-		else {
-			neighbors[2] = null;
-		}
-		//btm neighbor
-		if(row<grid.length-1) {
-			neighbors[3] = grid[row+1][col];
-		}
-		else {
-			neighbors[3] = null;
-		}
+	//This is only called when the Cell is NOT an edge. 
+	public HashMap<Integer, CellObject> getNeighbors(int row, int col) {
+		HashMap<Integer, CellObject> neighbors = new HashMap<Integer, CellObject>();
+		neighbors.put(LEFT, grid[row][col-1]);
+		neighbors.put(TOP, grid[row-1][col]);
+		neighbors.put(RIGHT, grid[row][col+1]);
+		neighbors.put(BTM, grid[row+1][col]);
 		return neighbors;
 	}
-	
-	private boolean containsFish(CellObject[] neighbors) {
-		for (CellObject neighbor: neighbors) {
-			if (neighbor instanceof Fish) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-
-	
-	
-	
 	
 	
 
