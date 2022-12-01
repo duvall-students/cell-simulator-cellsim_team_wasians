@@ -86,7 +86,7 @@ public abstract class Grid {
 		}
 		materializeTempGrid();
 	}
-	//Blake
+	
 	//returns coordinates of a chosen neighbor CellObject (row, column)
 	public static ArrayList<Integer> neighborCoordinate(int curRow, int curCol, int coordinate) {
 		ArrayList<Integer> arr = new ArrayList<>();

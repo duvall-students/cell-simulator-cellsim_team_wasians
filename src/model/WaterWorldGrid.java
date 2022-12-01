@@ -13,12 +13,12 @@ import model.cellObject.*;
 
 public class WaterWorldGrid extends Grid {
 	
-	public WaterWorldGrid(int rows, int columns, double fishDensity, double sharkDensity) {
+	public WaterWorldGrid(int rows, int columns) {
 		super(rows, columns);
 		cellTypes = new CellObject[] {new Fish(), new Shark(), new Water()};
 		// Brandon
 		// pass the value of fish and shark density
-		probabilities = new double[] {fishDensity, sharkDensity, .2};
+		probabilities = new double[] {.7, .1, .2};
 	}
 	
 	
