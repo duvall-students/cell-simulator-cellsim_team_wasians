@@ -31,4 +31,6 @@ public abstract class CellController {
 
 	public abstract int getCols();
 
+	public abstract void doOneStep(double elapsedTime);
+
 }
