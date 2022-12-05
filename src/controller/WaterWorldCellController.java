@@ -24,7 +24,7 @@ public class WaterWorldCellController extends CellController {
 	// The Rectangle objects that will get updated and drawn.  
 	// It is called "micro" grid because there is one entry per square in the grid.
 	private Rectangle[][] microGrid;
-		
+	
 	/*
 	 * cell color settings
 	 */
@@ -49,6 +49,15 @@ public class WaterWorldCellController extends CellController {
 	// where to start and stop the search
 //	private Point start;
 //	private Point destination;
+	
+	// index of the cell objects elements in the array of the user interface input series value
+	private final int ROWS_NUM = 0;
+	private final int COLS_NUM = 1;
+	private final int FISH_BREED_TIME = 2;
+	private final int SHARK_BREED_TIME = 3;
+	private final int SHARK_STRAVE_TIME = 4;
+	private final int FISH_DENSITY = 5;
+	private final int SHARK_DENSITY = 6;
 
 	// space variables of the grid
 	private final int EDGE_EXTENSION_NUMS = 2;
@@ -84,13 +93,13 @@ public class WaterWorldCellController extends CellController {
 	@Override
 	public void updateUserInterfaceInfo(ArrayList<String> userInputsInfo) {
 		waterWorldCellProperties = new ArrayList<String>();
-		waterWorldCellProperties.add(userInputsInfo.get(0));  // rowsNum, 0
-		waterWorldCellProperties.add(userInputsInfo.get(1));  // colsNum, 1
-		waterWorldCellProperties.add(userInputsInfo.get(2));  // fishBreedTime, 2
-		waterWorldCellProperties.add(userInputsInfo.get(3));  // sharkBreedTime, 3
-		waterWorldCellProperties.add(userInputsInfo.get(4));  // sharkStarveTime, 4
-		waterWorldCellProperties.add(userInputsInfo.get(5));  // fishDensity, 5
-		waterWorldCellProperties.add(userInputsInfo.get(6));  // sharkDensity, 6
+		waterWorldCellProperties.add(userInputsInfo.get(ROWS_NUM));  // rowsNum, 0
+		waterWorldCellProperties.add(userInputsInfo.get(COLS_NUM));  // colsNum, 1
+		waterWorldCellProperties.add(userInputsInfo.get(FISH_BREED_TIME));  // fishBreedTime, 2
+		waterWorldCellProperties.add(userInputsInfo.get(SHARK_BREED_TIME));  // sharkBreedTime, 3
+		waterWorldCellProperties.add(userInputsInfo.get(SHARK_STRAVE_TIME));  // sharkStarveTime, 4
+		waterWorldCellProperties.add(userInputsInfo.get(FISH_DENSITY));  // fishDensity, 5
+		waterWorldCellProperties.add(userInputsInfo.get(SHARK_DENSITY));  // sharkDensity, 6
 		updateRowsAndCols();
 		
 		grid = new WaterWorldGrid(getRows(), getCols(), getFishDensity(), getSharkDensity());
@@ -98,8 +107,8 @@ public class WaterWorldCellController extends CellController {
 	
 	// set the value of the number of rows and columns
 	private void updateRowsAndCols() {
-		rows = Integer.parseInt(waterWorldCellProperties.get(0)) + EDGE_EXTENSION_NUMS;
-		cols = Integer.parseInt(waterWorldCellProperties.get(1)) + EDGE_EXTENSION_NUMS;
+		rows = Integer.parseInt(waterWorldCellProperties.get(ROWS_NUM)) + EDGE_EXTENSION_NUMS;
+		cols = Integer.parseInt(waterWorldCellProperties.get(COLS_NUM)) + EDGE_EXTENSION_NUMS;
 	}
 	
 	// create the grid
@@ -147,6 +156,18 @@ public class WaterWorldCellController extends CellController {
 		}
 	}
 
+	/*
+	 * Does a step in the search regardless of pause status
+	 * 
+	 * (!!! This is an incomplete part due to the logic error when calling 
+	 * the cell-updated method in another class; needs further investigation.)
+	 * 
+	 */
+	public void doOneStep(double elapsedTime) {
+//		grid.updateGrid();
+//		redraw();
+		newGrid();
+	}
 	
 	/*
 	 * Does a step in the search regardless of pause status
@@ -157,7 +178,7 @@ public class WaterWorldCellController extends CellController {
 //		else if (identify.equals("Fish")) fish.step();
 //		redraw();
 //	}
-
+	
 	// identify the object type of each cell
 //	public void startIdentify(String identifyType) {
 //		grid.updateGrid();
@@ -207,20 +228,20 @@ public class WaterWorldCellController extends CellController {
 	
 	@Override
 	public int getRows() {
-		return Integer.parseInt(waterWorldCellProperties.get(0)) + EDGE_EXTENSION_NUMS;
+		return Integer.parseInt(waterWorldCellProperties.get(ROWS_NUM)) + EDGE_EXTENSION_NUMS;
 	}
 	
 	@Override
 	public int getCols() {
-		return Integer.parseInt(waterWorldCellProperties.get(1)) + EDGE_EXTENSION_NUMS;
+		return Integer.parseInt(waterWorldCellProperties.get(COLS_NUM)) + EDGE_EXTENSION_NUMS;
 	}
 	
 	private double getFishDensity() {
-		return Double.parseDouble(waterWorldCellProperties.get(5));
+		return Double.parseDouble(waterWorldCellProperties.get(FISH_DENSITY));
 	}
 	
 	private double getSharkDensity() {
-		return Double.parseDouble(waterWorldCellProperties.get(6));
+		return Double.parseDouble(waterWorldCellProperties.get(SHARK_DENSITY));
 	}
 	
 }

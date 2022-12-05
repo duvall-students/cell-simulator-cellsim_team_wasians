@@ -7,13 +7,14 @@ import view.GUIController;
 public class CellSimulator {
 	
 	public CellSimulator() {
+		// the formal program will start with this method call
 //		runSimulators();
-		
+
 		// this is temporary and only for testing the program
 		GUIController programGUIController = new GUIController();
 		programGUIController.launchGUI();
 	}
-	
+
 	private void runSimulators() {
 		Scanner scanner = new Scanner(System.in);
 		boolean isCellSimulatorExisted = false;
@@ -32,7 +33,7 @@ public class CellSimulator {
 				System.out.println("Sorry, we don't have this cell simulator. Try again as your wish!\n\n");
 			}
 		}
-		
+
 		scanner.close();
 	}
 	
