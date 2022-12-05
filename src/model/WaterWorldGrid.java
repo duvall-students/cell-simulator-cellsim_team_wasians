@@ -31,7 +31,7 @@ public class WaterWorldGrid extends Grid {
 		}
 	}
 	
-	public void changeDensity(double fishDensity, double sharkDensity, double waterDensity) {
-		probabilities = new double[] {fishDensity, sharkDensity, waterDensity};
+	public void changeDensity(double fishDensity, double sharkDensity) {
+		probabilities = new double[] {fishDensity, sharkDensity, 0.2};
 	}
 }
