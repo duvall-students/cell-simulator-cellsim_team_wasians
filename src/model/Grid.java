@@ -14,10 +14,10 @@ import model.cellObject.*;
 
 
 public abstract class Grid {
-	public static final int LEFT = 0;
-	public static final int TOP = 1;
-	public static final int RIGHT = 2;
-	public static final int BTM = 3;
+	private static final int LEFT = 0;
+	private static final int TOP = 1;
+	private static final int RIGHT = 2;
+	private static final int BTM = 3;
 	
 	protected CellObject[][] grid;
 	protected CellObject[][] tempGrid;
