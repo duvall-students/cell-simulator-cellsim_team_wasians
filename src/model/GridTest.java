@@ -45,6 +45,8 @@ class GridTest {
 	// get Neighbor method is only called when the Object on which the method is called is not an Edge. 
 	@Test
 	void testNeighborMethod() {
+		final int LEFT = 0;
+		
 		Grid grid = new WaterWorldGrid(5,5,.7,.1);
 		grid.populateGrid();
 		
@@ -52,9 +54,9 @@ class GridTest {
 		CellObject left = grid.getCell(1, 0);
 		
 		HashMap<Integer, CellObject> neighbors = grid.getNeighbors(1,1);
-		System.out.println(neighbors.get(grid.LEFT));
+		System.out.println(neighbors.get(LEFT));
 		System.out.println(left);
-		assertTrue(neighbors.get(grid.LEFT).equals(grid.getCell(1, 0)));
+		assertTrue(neighbors.get(LEFT).equals(grid.getCell(1, 0)));
 	}
 	
 
