@@ -28,7 +28,7 @@ import controller.*;
 public class GUIController extends Application{
 
 	// Stuff for the GUI
-	private final int MILLISECOND_DELAY = 15;
+	private final int MILLISECOND_DELAY = 150;
 	private final int EXTRA_VERTICAL = 230;
 	private final int EXTRA_HORIZONTAL = 200;
 	private final int BLOCK_SIZE = 60;
@@ -189,6 +189,7 @@ public class GUIController extends Application{
 	// everything that should be done in one step or "generation"
 	private void doOneStep(double elapsedTime) {
 //		System.out.println("Step");
+		cellController.doOneStep(elapsedTime);
 	}
 	
 	private void pressPause() {

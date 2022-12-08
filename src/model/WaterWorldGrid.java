@@ -30,4 +30,8 @@ public class WaterWorldGrid extends Grid {
 			grid[row][column] = getRandomCell();
 		}
 	}
+	
+	public void changeDensity(double fishDensity, double sharkDensity) {
+		probabilities = new double[] {fishDensity, sharkDensity, 0.2};
+	}
 }
